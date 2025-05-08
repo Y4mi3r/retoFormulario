@@ -1,20 +1,32 @@
 const { useState } = React;
 
 function Formulario() {
+  // Estado que guarda los valores del formulario
   const [formData, setFormData] = useState({
     nombre: "",
     email: "",
     mensaje: ""
   });
 
+  // Función para manejar cambios en los campos del formulario
   const handleChange = e => {
     const { name, value } = e.target;
+    
+  // Actualiza el estado manteniendo los otros campos sin modificar
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  // Función que se ejecuta al enviar el formulario
   const handleSubmit = e => {
     e.preventDefault();
     alert("Datos enviados correctamente\n");
+    
+  // Reinicia los campos del formulario
+    setFormData({
+      nombre: "",
+      email: "",
+      mensaje: ""
+    });
   };
 
   return (
@@ -51,5 +63,6 @@ function Formulario() {
   );
 }
 
+// Punto de entrada: renderiza el componente en el elemento con id="root"
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<Formulario />);
